@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.bar_toolbar);
+
         imageView = (ImageView) findViewById(R.id.img_example);
         parallaxScrollView = (ParallaxScrollView) findViewById(R.id.icandemy_scroller);
 
