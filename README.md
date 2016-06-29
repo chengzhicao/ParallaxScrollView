@@ -1,4 +1,4 @@
 # ParallaxScrollView
 ##视差滑动视图
 ActionBar渐变效果
-![image](https://github.com/chenglove1201/Image/blob/master/ParllaxScrollViewImage/fwefetwr.gif)
+![image](https://camo.githubusercontent.com/9792a64fffcb4f05e83eebf52074f62c7d8bd6f8/687474703a2f2f696d672e6d792e6373646e2e6e65742f75706c6f6164732f3230313630362f32392f313436373139333131335f363236392e676966)
