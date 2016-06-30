@@ -1,9 +1,11 @@
 package com.icandemy.parallaxscrollview;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
@@ -13,7 +15,7 @@ import android.widget.ScrollView;
 public class ParallaxScrollView extends ScrollView {
     private String tag = ParallaxScrollView.class.getSimpleName();
     private Toolbar toolbar;
-    private ImageView imageView;
+    private ViewPager viewPager;
 
     public ParallaxScrollView(Context context) {
         this(context, null);
@@ -34,20 +36,34 @@ public class ParallaxScrollView extends ScrollView {
 
     }
 
-    public void setScrollViewControl(Toolbar toolbar, ImageView imageView) {
+    public void setScrollViewControl(Toolbar toolbar, ViewPager viewPager) {
         this.toolbar = toolbar;
-        this.imageView = imageView;
+        this.viewPager = viewPager;
     }
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        int headHeight = imageView.getMeasuredHeight() - toolbar.getMeasuredHeight();
-        float alpha = (float) t / headHeight;
-        if (alpha >= 1.0f)
-            alpha = 1.0f;
-        Log.d("wtetwet", alpha + "");
-        toolbar.setAlpha(alpha);
-        imageView.setTop(t - t / 2);
+        int headHeight = viewPager.getMeasuredHeight() - toolbar.getMeasuredHeight();
+        int alpha = (int) ((float) t / headHeight * 255);
+        if (alpha >= 255) {
+            alpha = 255;
+        } else if (alpha < 0) {
+            alpha = 0;
+        }
+        toolbar.getBackground().setAlpha(alpha);
+        viewPager.setTop(t - t / 2);
         super.onScrollChanged(l, t, oldl, oldt);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        Log.i("iwoeiru","onTouchEvent");
+        return super.onTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.i("iwoeiru","onInterceptTouchEvent");
+        return super.onInterceptTouchEvent(ev);
     }
 }

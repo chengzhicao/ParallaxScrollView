@@ -15,12 +15,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/img_example"
+            <com.icandemy.parallaxscrollview.InfiniteLoopView
+                android:id="@+id/viewpager_ads"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/example" />
+                android:layout_height="211dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,6 +92,5 @@
         android:id="@+id/bar_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:alpha="0"
         android:background="@color/colorPrimary" />
 </RelativeLayout>
