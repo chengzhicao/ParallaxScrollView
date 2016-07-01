@@ -15,10 +15,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.icandemy.parallaxscrollview.InfiniteLoopView
-                android:id="@+id/viewpager_ads"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="211dp" />
+                android:layout_height="wrap_content">
+
+                <com.icandemy.parallaxscrollview.InfiniteLoopView
+                    android:id="@+id/viewpager_ads"
+                    android:layout_width="match_parent"
+                    android:layout_height="211dp" />
+
+                <include
+                    layout="@layout/incloud_loop_indication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"

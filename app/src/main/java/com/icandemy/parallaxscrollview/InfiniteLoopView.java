@@ -15,7 +15,7 @@ public class InfiniteLoopView extends ViewPager {
     private int currentItem;
     private boolean START_LOOP = true;
     private Context context;
-    private int startY;
+    private int startY, startX;
     private final int SLIDING_DISTANCE = 5;
 
     public InfiniteLoopView(Context context) {
@@ -71,20 +71,26 @@ public class InfiniteLoopView extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        int distanceY;
+        int distanceY, distanceX;
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 requestDisallowInterceptTouchEvent(true);
                 START_LOOP = false;
                 startY = (int) ev.getRawY();
+                startX = (int) ev.getRawX();
                 break;
             case MotionEvent.ACTION_MOVE:
                 distanceY = (int) ev.getRawY() - startY;
+                distanceX = (int) ev.getRawX() - startX;
                 int px_scroll = DisplayUtils.dip2px(context, SLIDING_DISTANCE);
                 if (Math.abs(distanceY) >= px_scroll
                         ) {//判断Y轴，按住时,只有当Y轴触摸移动的距离大于5dp才可开启轮播
                     START_LOOP = true;
                     requestDisallowInterceptTouchEvent(false);
+                }
+                if (Math.abs(distanceX) >= px_scroll) {
+                    START_LOOP = false;
+                    requestDisallowInterceptTouchEvent(true);
                 }
                 break;
             case MotionEvent.ACTION_UP:

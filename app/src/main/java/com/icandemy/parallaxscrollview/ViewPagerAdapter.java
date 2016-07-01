@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class ViewPagerAdapter extends PagerAdapter {
     private List<View> imageList;
-    private final int count = 10000;
-    public final static int CURRENT_VALUE = 5000;
+    private final static int count = 1000;
+    public final static int CURRENT_VALUE = count/2;
 
     public ViewPagerAdapter(List<View> imageList) {
         this.imageList = imageList;
