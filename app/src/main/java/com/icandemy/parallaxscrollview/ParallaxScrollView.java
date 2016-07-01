@@ -54,16 +54,4 @@ public class ParallaxScrollView extends ScrollView {
         viewPager.setTop(t - t / 2);
         super.onScrollChanged(l, t, oldl, oldt);
     }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        Log.i("iwoeiru","onTouchEvent");
-        return super.onTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i("iwoeiru","onInterceptTouchEvent");
-        return super.onInterceptTouchEvent(ev);
-    }
 }

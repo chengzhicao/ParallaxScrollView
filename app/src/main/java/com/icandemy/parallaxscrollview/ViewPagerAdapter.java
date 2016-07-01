@@ -11,8 +11,9 @@ import java.util.List;
  * Created by ICAN on 2016/6/30.
  */
 public class ViewPagerAdapter extends PagerAdapter {
-
     private List<View> imageList;
+    private final int count = 10000;
+    public final static int CURRENT_VALUE = 5000;
 
     public ViewPagerAdapter(List<View> imageList) {
         this.imageList = imageList;
@@ -20,7 +21,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return imageList.size();
+        return count;
     }
 
     @Override
@@ -30,13 +31,12 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(imageList.get(position));
-        return imageList.get(position);
+        container.addView(imageList.get(position % imageList.size()));
+        return imageList.get(position % imageList.size());
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView(imageList.get(position));
-        Log.i("gwgwe", "adapter:"+position + "");
+        container.removeView(imageList.get(position % imageList.size()));
     }
 }

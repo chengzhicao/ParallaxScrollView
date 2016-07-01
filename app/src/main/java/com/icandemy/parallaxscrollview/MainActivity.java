@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         imageList.add(View.inflate(this, R.layout.pager_ads_fourth, null));
 
         infiniteLoopView.setAdapter(new ViewPagerAdapter(imageList));
+        infiniteLoopView.setCurrentItem(ViewPagerAdapter.CURRENT_VALUE);//设置当前轮播图
         infiniteLoopView.startLoopPlay();
         infiniteLoopView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -43,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                infiniteLoopView.setCurrentItem(position);
+                infiniteLoopView.setCurrentItem(position);//每当手动滑动轮播图后，更新当前current值
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
             }
         });
     }

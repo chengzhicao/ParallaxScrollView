@@ -1,14 +1,11 @@
 package com.icandemy.parallaxscrollview;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 
 /**
  * 实现无限轮播
@@ -18,7 +15,8 @@ public class InfiniteLoopView extends ViewPager {
     private int currentItem;
     private boolean START_LOOP = true;
     private Context context;
-    private int startY, startX;
+    private int startY;
+    private final int SLIDING_DISTANCE = 5;
 
     public InfiniteLoopView(Context context) {
         this(context, null);
@@ -73,24 +71,20 @@ public class InfiniteLoopView extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        int distanceY, distanceX;
+        int distanceY;
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                startY = (int) ev.getRawY();
-                startX = (int) ev.getRawX();
+                requestDisallowInterceptTouchEvent(true);
                 START_LOOP = false;
+                startY = (int) ev.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
                 distanceY = (int) ev.getRawY() - startY;
-                distanceX = (int) ev.getRawX() - startX;
-                if (Math.abs(distanceY) >= DisplayUtils.dip2px(context, 5)
+                int px_scroll = DisplayUtils.dip2px(context, SLIDING_DISTANCE);
+                if (Math.abs(distanceY) >= px_scroll
                         ) {//判断Y轴，按住时,只有当Y轴触摸移动的距离大于5dp才可开启轮播
                     START_LOOP = true;
-                }
-                if (Math.abs(distanceX) <= DisplayUtils.dip2px(context, 5)) {//判断X轴，按住时,如果当X轴触摸移动的距离大于5dp则关闭轮播
-                    START_LOOP = true;
-                } else {
-                    START_LOOP = false;
+                    requestDisallowInterceptTouchEvent(false);
                 }
                 break;
             case MotionEvent.ACTION_UP:
